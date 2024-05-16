@@ -5,22 +5,39 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         const period = document.getElementById('period').value;
-        createGrid(period);
+        const habits = document.getElementById('habits').value.split(',').map(habit => habit.trim());
+        createGrid(period, habits);
     });
 
-    function createGrid(days) {
+    function createGrid(days, habits) {
         gridContainer.innerHTML = ''; // Clear the existing grid
+
+        // Create header row with habit names
+        const headerRow = document.createElement('div');
+        headerRow.classList.add('header');
+        headerRow.innerHTML = '<div></div>'; // Empty cell for day labels
+        habits.forEach(habit => {
+            const habitCell = document.createElement('div');
+            habitCell.textContent = habit;
+            headerRow.appendChild(habitCell);
+        });
+        gridContainer.appendChild(headerRow);
+
+        // Create rows for each day
         for (let i = 0; i < days; i++) {
-            const row = document.createElement('div');
-            row.classList.add('row');
-            for (let j = 0; j < 10; j++) {
+            const dayRow = document.createElement('div');
+            dayRow.classList.add('day-label');
+            const dayLabel = document.createElement('div');
+            dayLabel.textContent = `Day ${i + 1}`;
+            dayRow.appendChild(dayLabel);
+            habits.forEach(() => {
                 const cell = document.createElement('div');
                 cell.addEventListener('click', () => {
                     cell.classList.toggle('active');
                 });
-                row.appendChild(cell);
-            }
-            gridContainer.appendChild(row);
+                dayRow.appendChild(cell);
+            });
+            gridContainer.appendChild(dayRow);
         }
     }
 });

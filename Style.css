@@ -22,10 +22,22 @@ form {
     margin-top: 20px;
 }
 
-.grid .row {
-    display: grid;
-    grid-template-columns: repeat(10, 30px);
-    gap: 5px;
+.grid .header {
+    display: contents;
+}
+
+.grid .header div {
+    font-weight: bold;
+    text-align: center;
+}
+
+.grid .day-label {
+    display: contents;
+}
+
+.grid .day-label div {
+    font-weight: bold;
+    text-align: center;
 }
 
 .grid div {
