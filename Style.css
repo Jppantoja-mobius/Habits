@@ -1,54 +1,117 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f5f5;
     color: #333;
     text-align: center;
     margin: 0;
     padding: 20px;
 }
 
+.container {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 h1 {
-    color: #007acc;
+    color: #32a852;
+    margin-bottom: 10px;
 }
 
 form {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+form input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #32a852;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #28a745;
 }
 
 .grid {
-    display: grid;
-    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     justify-content: center;
     margin-top: 20px;
+    width: 100%;
 }
 
-.grid .header, .grid .row {
+.grid .header,
+.grid .row {
     display: grid;
-    grid-template-columns: 100px repeat(auto-fill, 30px);
+    grid-template-columns: 150px repeat(31, 30px); /* Fixed width for "Habits" header, fixed width for days */
     gap: 5px;
-    justify-items: center;
+    align-items: center;
 }
 
-.grid .header div, .grid .row div {
-    width: 30px;
-    height: 30px;
-}
-
-.grid div.header-cell {
+.grid .header .header-cell,
+.grid .row .habit-label {
+    background-color: white;
     font-weight: bold;
-    text-align: center;
-    width: auto;
-    height: auto;
-    border: none;
-    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+.grid .header div:not(.header-cell),
+.grid .row div {
+    width: 30px; /* Fixed width to match the grid cells */
+    height: 30px; /* Fixed height to match the grid cells */
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 0; /* Remove extra margin */
+}
+
+.grid .header div:not(.header-cell) {
+    background-color: white;
+    font-weight: bold;
 }
 
 .grid div.active {
-    background-color: green;
+    background-color: #90ee90;
+    position: relative;
 }
 
-.grid .day-label {
-    width: 100px;
-    text-align: right;
-    font-weight: bold;
+.grid div.active::after {
+    content: '✔';
+    color: #006400;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

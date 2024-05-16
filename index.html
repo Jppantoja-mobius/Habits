@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobius Habits Tracker</title>
+    <title>Jppantoja Habits Tracker</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Link to Google Fonts for modern font styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Welcome to Mobius Habits Tracker</h1>
-    <p>Let's start</p>
-    <form id="section-form">
-        <label for="period">Enter Number of Days:</label>
-        <input type="number" id="period" min="1" placeholder="e.g., 21, 30, 31">
-        <label for="habits">Enter Habits (comma separated):</label>
-        <input type="text" id="habits" placeholder="e.g., Read, Write, Exercise">
-        <button type="submit">Create Section</button>
-    </form>
-    <div id="grid-container"></div>
+    <div class="container">
+        <h1>Welcome to jppantoja Habits Tracker</h1>
+        <p>Let's start</p>
+        <!-- Form for adding habits -->
+        <form id="habit-form">
+            <label for="habit">Enter Habit:</label>
+            <input type="text" id="habit" placeholder="e.g., Read" required>
+            <button type="submit">Add Habit</button>
+        </form>
+        <!-- Container for the generated grid -->
+        <div id="grid-container" class="grid"></div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
