@@ -22,32 +22,33 @@ form {
     margin-top: 20px;
 }
 
-.grid .header {
-    display: contents;
+.grid .header, .grid .row {
+    display: grid;
+    grid-template-columns: 100px repeat(auto-fill, 30px);
+    gap: 5px;
+    justify-items: center;
 }
 
-.grid .header div {
-    font-weight: bold;
-    text-align: center;
-}
-
-.grid .day-label {
-    display: contents;
-}
-
-.grid .day-label div {
-    font-weight: bold;
-    text-align: center;
-}
-
-.grid div {
+.grid .header div, .grid .row div {
     width: 30px;
     height: 30px;
-    background-color: white;
-    border: 1px solid #ccc;
-    cursor: pointer;
+}
+
+.grid div.header-cell {
+    font-weight: bold;
+    text-align: center;
+    width: auto;
+    height: auto;
+    border: none;
+    background-color: transparent;
 }
 
 .grid div.active {
     background-color: green;
+}
+
+.grid .day-label {
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
 }

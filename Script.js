@@ -15,9 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create header row with habit names
         const headerRow = document.createElement('div');
         headerRow.classList.add('header');
-        headerRow.innerHTML = '<div></div>'; // Empty cell for day labels
+        headerRow.innerHTML = '<div class="header-cell"></div>'; // Empty cell for day labels
         habits.forEach(habit => {
             const habitCell = document.createElement('div');
+            habitCell.classList.add('header-cell');
             habitCell.textContent = habit;
             headerRow.appendChild(habitCell);
         });
@@ -26,8 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create rows for each day
         for (let i = 0; i < days; i++) {
             const dayRow = document.createElement('div');
-            dayRow.classList.add('day-label');
+            dayRow.classList.add('row');
             const dayLabel = document.createElement('div');
+            dayLabel.classList.add('day-label');
             dayLabel.textContent = `Day ${i + 1}`;
             dayRow.appendChild(dayLabel);
             habits.forEach(() => {
