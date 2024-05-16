@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #007acc;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+.grid {
+    display: grid;
+    gap: 5px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.grid .row {
+    display: grid;
+    grid-template-columns: repeat(10, 30px);
+    gap: 5px;
+}
+
+.grid div {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.grid div.active {
+    background-color: green;
+}
