@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('habit-form');
     const gridContainer = document.getElementById('grid-container');
 
+    // Load saved habits
+    loadHabits();
+
     // Create the header row with days
     function createHeaderRow() {
         const headerRow = document.createElement('div');
@@ -23,11 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const habit = document.getElementById('habit').value.trim();
         if (habit) {
             addHabitRow(habit);
+            saveHabit(habit);
             document.getElementById('habit').value = ''; // Clear the input field
         }
     });
 
-    function addHabitRow(habit) {
+    function addHabitRow(habit, days = []) {
         const habitRow = document.createElement('div');
         habitRow.classList.add('row');
         const habitLabel = document.createElement('div');
@@ -38,9 +42,33 @@ document.addEventListener('DOMContentLoaded', () => {
             const cell = document.createElement('div');
             cell.addEventListener('click', () => {
                 cell.classList.toggle('active');
+                updateHabitStatus(habit, i, cell.classList.contains('active'));
             });
+            if (days[i]) {
+                cell.classList.add('active');
+            }
             habitRow.appendChild(cell);
         }
         gridContainer.appendChild(habitRow);
+    }
+
+    function loadHabits() {
+        const habits = JSON.parse(localStorage.getItem('habits')) || [];
+        habits.forEach(habit => addHabitRow(habit.name, habit.days));
+    }
+
+    function saveHabit(habit) {
+        const habits = JSON.parse(localStorage.getItem('habits')) || [];
+        habits.push({ name: habit, days: new Array(31).fill(false) });
+        localStorage.setItem('habits', JSON.stringify(habits));
+    }
+
+    function updateHabitStatus(habitName, dayIndex, status) {
+        const habits = JSON.parse(localStorage.getItem('habits')) || [];
+        const habit = habits.find(h => h.name === habitName);
+        if (habit) {
+            habit.days[dayIndex] = status;
+            localStorage.setItem('habits', JSON.stringify(habits));
+        }
     }
 });
