@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('habit-form');
     const gridContainer = document.getElementById('grid-container');
+    const resetButton = document.getElementById('reset-button');
 
     // Create the header row with days
     function createHeaderRow() {
@@ -67,6 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('habits', JSON.stringify(habits));
         }
     }
+
+    // Reset habits function
+    resetButton.addEventListener('click', () => {
+        localStorage.removeItem('habits');
+        gridContainer.innerHTML = '';
+        createHeaderRow();
+    });
 
     // Initialize the header row first
     createHeaderRow();
