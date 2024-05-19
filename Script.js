@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         gridContainer.appendChild(headerRow);
     }
-
     // Initialize the header row
     createHeaderRow();
 
