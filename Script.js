@@ -2,9 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('habit-form');
     const gridContainer = document.getElementById('grid-container');
 
-    // Load saved habits
-    loadHabits();
-
     // Create the header row with days
     function createHeaderRow() {
         const headerRow = document.createElement('div');
@@ -18,8 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         gridContainer.appendChild(headerRow);
     }
-    // Initialize the header row
-    createHeaderRow();
+
+    // Load saved habits
+    function loadHabits() {
+        const habits = JSON.parse(localStorage.getItem('habits')) || [];
+        habits.forEach(habit => addHabitRow(habit.name, habit.days));
+    }
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -52,11 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
         gridContainer.appendChild(habitRow);
     }
 
-    function loadHabits() {
-        const habits = JSON.parse(localStorage.getItem('habits')) || [];
-        habits.forEach(habit => addHabitRow(habit.name, habit.days));
-    }
-
     function saveHabit(habit) {
         const habits = JSON.parse(localStorage.getItem('habits')) || [];
         habits.push({ name: habit, days: new Array(31).fill(false) });
@@ -71,4 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('habits', JSON.stringify(habits));
         }
     }
+
+    // Initialize the header row first
+    createHeaderRow();
+    // Load saved habits after the header row is created
+    loadHabits();
 });
