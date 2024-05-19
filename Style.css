@@ -17,6 +17,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 h1 {
@@ -114,4 +115,27 @@ form button:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+#reset-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#reset-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+#reset-button span {
+    margin-right: 10px;
+    font-size: 20px;
 }
