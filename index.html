@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Another Habit Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Link to Google Fonts for modern font styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Another Habit Tracker</h1>
+        <p>Let's start</p>
+        <!-- Form for adding habits -->
+        <form id="habit-form">
+            <label for="habit">Enter Habit:</label>
+            <input type="text" id="habit" placeholder="e.g., Read" required>
+            <button type="submit">Add Habit</button>
+        </form>
+        <!-- Reset button -->
+        <div id="reset-container">
+            <button id="reset-button">
+                <span>&#x21bb;</span> Reset Habits
+            </button>
+        </div>
+        <!-- Container for the generated grid -->
+        <div id="grid-container" class="grid"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
