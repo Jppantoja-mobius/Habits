@@ -13,7 +13,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 0 auto;
-    max-width: 1400px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,31 +23,61 @@ body {
 h1 {
     color: #32a852;
     margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+#settings {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#settings input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#settings button {
+    padding: 10px;
+    border: none;
+    background-color: #32a852;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#settings button:hover {
+    background-color: #28a745;
 }
 
 form {
     margin-bottom: 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 10px;
+    width: 100%;
 }
 
 form input[type="text"] {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 1rem;
+    width: 100%;
 }
 
 form button {
-    padding: 10px 20px;
+    padding: 10px;
     border: none;
     background-color: #32a852;
     color: #ffffff;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
+    width: 100%;
 }
 
 form button:hover {
@@ -61,40 +91,59 @@ form button:hover {
     justify-content: center;
     margin-top: 20px;
     width: 100%;
+    align-items: center; /* Center align the grid within the container */
 }
 
 .grid .header,
 .grid .row {
     display: grid;
-    grid-template-columns: 150px repeat(31, 30px); /* Fixed width for "Habits" header, fixed width for days */
+    grid-template-columns: 150px repeat(31, 30px); /* Ensure columns are equal width */
     gap: 10px;
     align-items: center;
 }
 
 .grid .header .header-cell,
-.grid .row .habit-label {
+.grid .row .label-container {
     background-color: white;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 20px;
+    padding: 0 10px; /* Adjust padding to make space for "x" button */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     white-space: nowrap;
+    color: #000; /* Ensure text color is black */
 }
 
-.grid .header div:not(.header-cell),
-.grid .row div {
-    width: 30px; /* Fixed width to match the grid cells */
-    height: 30px; /* Fixed height to match the grid cells */
-    background-color: #e0e0e0;
+.grid .header .habit-header {
+    justify-content: center;
+    text-align: center;
+}
+
+.grid .row .label-container {
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.grid .header .header-cell,
+.grid .row .label-container,
+.grid .row .habit-label {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.grid .row .grid-cell {
+    width: 30px; /* Ensure equal width for header and grid cells */
+    height: 30px;
+    background-color: #e0e0e0; /* Gray background for grid cells */
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 0; /* Remove extra margin */
+    margin: 0;
 }
 
 .grid .header div:not(.header-cell) {
@@ -110,7 +159,7 @@ form button:hover {
 .grid div.active::after {
     content: '✔';
     color: #006400;
-    font-size: 20px;
+    font-size: 1.5rem;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -119,23 +168,118 @@ form button:hover {
 
 #reset-container {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
 }
 
 #reset-button {
-    padding: 10px 20px;
+    padding: 10px;
     border: none;
     background-color: #ff0000;
     color: #ffffff;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     display: flex;
     align-items: center;
 }
 
 #reset-button span {
-    margin-right: 10px;
-    font-size: 20px;
+    margin-right: 5px;
+    font-size: 1.5rem;
+}
+
+.label-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white; /* Ensure white background */
+    color: #000; /* Ensure text color is black */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Keep shadow */
+}
+
+.habit-label {
+    flex-grow: 1;
+    text-align: center; /* Center text horizontally */
+    padding: 10px 0; /* Add vertical padding to center text vertically */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: white; /* Ensure white background */
+    color: #000; /* Ensure text color is black */
+}
+
+.context-menu {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.context-menu-option {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.context-menu-option:hover {
+    background-color: #f0f0f0;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8rem;
+}
+
+@media (min-width: 600px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    #settings {
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    form {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: auto;
+    }
+
+    form input[type="text"] {
+        width: auto;
+    }
+
+    form button {
+        width: auto;
+    }
+
+    .grid .header,
+    .grid .row {
+        grid-template-columns: 150px repeat(31, 30px); /* Ensure columns are equal width */
+    }
+
+    #reset-container {
+        top: 20px;
+        right: 20px;
+    }
+
+    #reset-button {
+        font-size: 16px;
+    }
+
+    #reset-button span {
+        font-size: 20px;
+    }
 }
