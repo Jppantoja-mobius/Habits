@@ -6,8 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const daysInput = document.getElementById('days');
     const habitInput = document.getElementById('habit');
     const habitError = document.getElementById('habit-error');
+    const premiumPopup = document.getElementById('premium-popup');
+    const closeButton = document.querySelector('.close-button');
     let numberOfDays = 31;
     const maxHabitLength = 10;
+    const maxFreeHabits = 5;
 
     setDaysButton.addEventListener('click', () => {
         numberOfDays = parseInt(daysInput.value);
@@ -50,6 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
+        const habits = JSON.parse(localStorage.getItem('habits')) || [];
+        if (habits.length >= maxFreeHabits) {
+            showPremiumPopup();
+            return;
+        }
         const habit = habitInput.value.trim();
         if (habit && habit.length <= maxHabitLength) {
             addHabitRow(habit, new Array(numberOfDays).fill(false));
@@ -142,6 +150,14 @@ document.addEventListener('DOMContentLoaded', () => {
         gridContainer.innerHTML = '';
         document.getElementById('settings').style.display = 'flex';
         form.style.display = 'none';
+    });
+
+    function showPremiumPopup() {
+        premiumPopup.style.display = 'block';
+    }
+
+    closeButton.addEventListener('click', () => {
+        premiumPopup.style.display = 'none';
     });
 
     loadHabits();
