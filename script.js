@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         habitRow.appendChild(labelContainer);
         for (let i = 0; i < days.length; i++) {
             const cell = document.createElement('div');
-            cell.classList.add('grid-cell');
+            cell.classList.add('grid-cell'); // Add grid-cell class
             cell.addEventListener('click', () => {
                 cell.classList.toggle('active');
                 updateHabitStatus(habit, i, cell.classList.contains('active'));
