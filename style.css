@@ -237,23 +237,25 @@ form button:hover {
 
 .popup {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px;
 }
 
 .popup-content {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    text-align: left;
+    text-align: center;
     width: 300px;
     position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .popup h2 {
@@ -262,6 +264,7 @@ form button:hover {
 
 .popup ul {
     padding-left: 20px;
+    text-align: left; /
 }
 
 .popup ul li {
@@ -275,6 +278,27 @@ form button:hover {
     font-size: 18px;
     cursor: pointer;
 }
+
+/* Style the "Upgrade Now" Button */
+#upgrade-button {
+    padding: 10px 20px;
+    border: 2px solid #800080; /* Purple border */
+    background-color: transparent; /* Transparent background */
+    color: #800080; /* Purple text */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(128, 0, 128, 0.3); /* Purple shadow */
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center; /* Center text within the button */
+}
+
+#upgrade-button:hover {
+    background-color: #800080;
+    color: #ffffff;
+}
+
 
 @media (min-width: 600px) {
     .container {
